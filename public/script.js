@@ -2,7 +2,7 @@ const textArea = document.getElementById("text_to_summarize");
 const submitButton = document.getElementById("submit-button");
 const summarizedTextArea = document.getElementById("summary");
 
-const baseurl = "https://text-summarizer-app.vercel.app/";
+const baseurl = "https://text-summarizer-app.vercel.app";
 
 submitButton.disabled = true;
 
@@ -47,7 +47,7 @@ function submitData(e) {
   // Send the text to the server using fetch API
 
  // Note - here we can omit the “baseUrl” we needed in Postman and just use a relative path to “/summarize” because we will be calling the API from our Replit!  
-  fetch(`http://localhost:5000/summarize`, requestOptions)
+  fetch(`${baseurl}/summarize`, requestOptions)
     .then(response => response.text()) // Response will be summarized text
     .then(summary => {
       // Do something with the summary response from the back end API!
