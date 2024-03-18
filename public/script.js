@@ -2,7 +2,7 @@ const textArea = document.getElementById("text_to_summarize");
 const submitButton = document.getElementById("submit-button");
 const summarizedTextArea = document.getElementById("summary");
 
-const baseurl = "https://text-summarizer-app.vercel.app";
+const baseurl = "https://text-summarizer-app-backend.vercel.app";
 
 submitButton.disabled = true;
 
