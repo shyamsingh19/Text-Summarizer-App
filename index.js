@@ -1,12 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 
-app.use(cors());
-
 require("dotenv").config();
 
 const app = express();
 
+app.use(cors());
 // Use the provided port or default to 5000 for local development
 const port = process.env.PORT || 5000;
 

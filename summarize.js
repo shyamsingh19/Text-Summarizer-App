@@ -1,7 +1,9 @@
 // Axios is the framework we will be using to calling the API
 const axios = require('axios');
+const express = require("express");
 const cors = require("cors");
 
+const app = express();
 app.use(cors());
 
 const { request } = require('http');
