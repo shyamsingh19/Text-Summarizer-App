@@ -29,6 +29,10 @@ app.post("/summarize", (req, res) => {
     });
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack); // Log the error stack trace
