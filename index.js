@@ -1,30 +1,38 @@
-const express = require('express');
-require('dotenv').config();
+const express = require("express");
+require("dotenv").config();
 
 const app = express();
 
-const port = 5000;
+// Use the provided port or default to 5000 for local development
+const port = process.env.PORT || 5000;
 
-const summarizeText = require('./summarize.js');
+const summarizeText = require("./summarize.js");
 
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
-app.use(express.static('public')); // Serve static files from the 'public' directory
+app.use(express.static("public")); // Serve static files from the 'public' directory
 
 // Handle POST requests to the '/summarize' endpoint
-app.post('/summarize', (req, res) => {
- // get the text_to_summarize property from the request body
+app.post("/summarize", (req, res) => {
+  // get the text_to_summarize property from the request body
   const text = req.body.text_to_summarize;
 
   // call your summarizeText function, passing in the text from the request
   summarizeText(text)
-    .then(response => {
+    .then((response) => {
       res.send(response); // Send the summary text as a response
     })
-    .catch(error => {
-      console.log(error.message);
+    .catch((error) => {
+      console.error(error); // Log the error to console
+      res.status(500).send("Internal Server Error"); // Send a 500 error response
     });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Log the error stack trace
+  res.status(500).send("Something went wrong!"); // Send a generic error response
 });
 
 // Start the server
